@@ -13,9 +13,21 @@ provider "aws" {
   region = "ap-northeast-1"
 }
 
+variable "vpc_security_group_ids" {
+  description = "List of security group IDs to be assigned to the EC2 instance"
+  type        = list(string)
+}
+
+variable "subnet_id" {
+  description = "The ID of the subnet to associate with the EC2 instance"
+  type        = string
+}
+
 resource "aws_instance" "app_server" {
-  ami           = "ami-0dfa284c9d7b2adad"
-  instance_type = "t2.micro"
+  ami                    = "ami-0dfa284c9d7b2adad"
+  instance_type          = "t2.micro"
+  vpc_security_group_ids = var.vpc_security_group_ids
+  subnet_id              = var.subnet_id
 
   tags = {
     Name = "ExampleAppServerInstance"
