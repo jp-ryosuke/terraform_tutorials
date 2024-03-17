@@ -23,6 +23,13 @@ variable "subnet_id" {
   type        = string
 }
 
+variable "instance_name" {
+  description = "Value of the Name tag for the EC2 instance"
+  type        = string
+  default     = "ExampleAppServerInstance"
+}
+
+
 resource "aws_instance" "app_server" {
   //ami                    = "ami-0dfa284c9d7b2adad" //Amazon Linux
   ami                    = "ami-0eba6c58b7918d3a1" //Ubuntu 22.04 LTS
@@ -31,6 +38,6 @@ resource "aws_instance" "app_server" {
   subnet_id              = var.subnet_id
 
   tags = {
-    Name = "ExampleAppServerInstance"
+    Name = var.instance_name
   }
 }
