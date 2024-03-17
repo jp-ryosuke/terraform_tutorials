@@ -24,7 +24,8 @@ variable "subnet_id" {
 }
 
 resource "aws_instance" "app_server" {
-  ami                    = "ami-0dfa284c9d7b2adad"
+  //ami                    = "ami-0dfa284c9d7b2adad" //Amazon Linux
+  ami                    = "ami-0eba6c58b7918d3a1" //Ubuntu 22.04 LTS
   instance_type          = "t2.micro"
   vpc_security_group_ids = var.vpc_security_group_ids
   subnet_id              = var.subnet_id
